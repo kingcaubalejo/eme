@@ -11,7 +11,7 @@ import (
 )
 
 type Roles struct {
-	RoleId  		uint `json:"-" gorm:"primaryKey" gorm:"autoIncrement" gorm:"unique"`
+	RoleId  		uint `json:"role_id" gorm:"primaryKey" gorm:"autoIncrement" gorm:"unique"`
 	RoleName  		string `json:"role_name" gorm:"type:varchar(255)"`
 	RoleActions   	string `json:"role_actions" gorm:"type:varchar(255)"`
 	IsActive 		bool `json:"is_active" gorm:"type:bool"`

@@ -5,7 +5,7 @@ import (
 	"api/utils"
 	_"database/sql"
 	"net/http"
-	_"time"
+	"time"
 
 	"gorm.io/gorm"
 )
@@ -13,8 +13,8 @@ import (
 var DB = database.Connect
 
 type DateModel struct {
-	CreatedAt string    `json:"createdAt"`
-	UpdatedAt string    `json:"updatedAt"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 	DeletedAt gorm.DeletedAt `json:"-" gorm:"index"`
 }
 
