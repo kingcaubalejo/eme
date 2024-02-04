@@ -38,7 +38,7 @@ func (a *App) Initialize() {
 		AllowCredentials:   true,
 		OptionsPassthrough: false,
 		AllowedHeaders:     []string{"Origin", "Authorization", "Access-Control-Allow-Origin", "Content-Type"},
-		AllowedMethods:     []string{"GET", "POST", "DELETE", "PATCH"},
+		AllowedMethods:     []string{"GET", "POST", "DELETE", "PATCH", "PUT"},
 		AllowedOrigins:     []string{"*"},
 	})
 
