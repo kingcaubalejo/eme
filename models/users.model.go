@@ -59,21 +59,20 @@ func (c *Users) Update() error {
 	return ctx.Error
 }
 
-// func (c *TblUserDelete) Delete() error {
-// 	ctx := DB.Delete(&Users{}, c.IDS)
-// 	if ctx.RowsAffected == 0 {
-// 		return errors.New("No user deleted. User not found.")
-// 	}
-// 	return nil
-// }
-
 func (c *Users) Get(r *http.Request) ([]Users, int64, error) {
 	var users []Users
 	var userCount int64
 
 	DB.Model(&Users{}).Count(&userCount)
 
-	ctx := DB.Scopes(paginate(r), order(r, []string{"id", "name"})).Find(&users)
+	ctx := DB.Scopes(paginate(r), order(r, []string{
+		"account_id",
+		"first_name",
+		"last_name",
+		"is_active",
+		"created_at",
+		"updated_at",
+	})).Find(&users)
 
 	return users, userCount, ctx.Error
 
