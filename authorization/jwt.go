@@ -11,7 +11,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
-var secretKey = "ThisIsRealSecretB*tch"
+var secretKey = "LifeIzGoodWithGodAMEN7777777"
 
 func GenerateJWT(data map[string]interface{}) (string, error) {
 	var mySigningKey = []byte(secretKey)
@@ -25,7 +25,6 @@ func GenerateJWT(data map[string]interface{}) (string, error) {
 	tokenString, err := token.SignedString(mySigningKey)
 
 	if err != nil {
-		// fmt.Errorf("Something Went Wrong: %s", err.Error())
 		return "", err
 	}
 	return tokenString, nil
