@@ -9,6 +9,7 @@ func LoadRouter() *mux.Router {
 
 	router = usersRoute(router)
 	router = rolesRoute(router)
+	router = pastorsRoute(router)
 	
 	router = auth(router)
 	
