@@ -20,6 +20,8 @@ func usersRoute(router *mux.Router) *mux.Router {
 	// 	Methods("DELETE")
 	router.HandleFunc("/v1/users/get", c.Get).Methods("GET")
 	router.HandleFunc("/v1/users/get-info/{id}", c.GetInfo).Methods("GET")
+	router.HandleFunc("/v1/users/get-info/{id}", c.GetInfo).Methods("GET")
+	router.HandleFunc("/v1/users/{by}", c.GetUserBy).Methods("GET")
 
 	return router
 }

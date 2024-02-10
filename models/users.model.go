@@ -96,3 +96,41 @@ func (c *Users) FindUser() error {
 	}
 	return ctx.Error
 }
+
+func (c *Users) FindUserByName(r *http.Request) ([]Users, int64, error) {
+	var users []Users
+	var userCount int64
+
+	DB.Model(&Users{}).Count(&userCount)
+
+	ctx := DB.Scopes(paginate(r), order(r, []string{
+		"account_id",
+		"first_name",
+		"last_name",
+		"is_active",
+		"created_at",
+		"updated_at",
+	})).Find(&users)
+
+	return users, userCount, ctx.Error
+
+}
+
+func (c *Users) FindUserByRole(r *http.Request) ([]Users, int64, error) {
+	var users []Users
+	var userCount int64
+
+	DB.Model(&Users{}).Count(&userCount)
+
+	ctx := DB.Scopes(paginate(r), order(r, []string{
+		"account_id",
+		"first_name",
+		"last_name",
+		"is_active",
+		"created_at",
+		"updated_at",
+	})).Find(&users)
+
+	return users, userCount, ctx.Error
+
+}
