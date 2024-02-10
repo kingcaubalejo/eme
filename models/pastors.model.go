@@ -11,11 +11,11 @@ import (
 )
 
 type Pastors struct {
-	PastorId  		uint `json:"pastor_id" gorm:"primaryKey" gorm:"autoIncrement" gorm:"unique"`
-	LastName  		string `json:"last_name" gorm:"type:varchar(255)"`
-	FirstName   	string `json:"first_name" gorm:"type:varchar(255)"`
-	IsActive 		bool `json:"is_active" gorm:"type:bool"`
-	IsDeleted 		bool `json:"-" gorm:"type:bool"`
+	PastorId  			uint `json:"pastor_id" gorm:"primaryKey" gorm:"autoIncrement" gorm:"unique"`
+	LastName  			string `json:"last_name" gorm:"type:varchar(255)"`
+	FirstName   		string `json:"first_name" gorm:"type:varchar(255)"`
+	IsActive 			bool `json:"is_active" gorm:"type:bool"`
+	IsDeleted 			bool `json:"-" gorm:"type:bool"`
 	DateModel
 }
 
@@ -85,6 +85,15 @@ func (c *Pastors) GetInfo(pastorId int) error {
 	ctx := DB.Find(&c, pastorId)
 	if ctx.RowsAffected == 0 {
 		return errors.New("Unable to find the Pastor.")
+	}
+
+	return ctx.Error
+}
+
+func (c *Pastors) GetChurch(pastorId int) error {
+	ctx := DB.Model(&Pastors{}).Preload("Churches").Find(&c, pastorId)
+	if ctx.RowsAffected == 0 {
+		return errors.New("Unable to find the pastor of the church.")
 	}
 
 	return ctx.Error

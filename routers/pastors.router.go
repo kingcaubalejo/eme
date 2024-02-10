@@ -14,5 +14,6 @@ func pastorsRoute(router *mux.Router) *mux.Router {
 	router.HandleFunc("/v1/pastors/delete/{pastorId}", c.Delete).Methods("DELETE")
 	router.HandleFunc("/v1/pastors", c.Get).Methods("GET")
 	router.HandleFunc("/v1/pastors/{pastorId}", c.GetInfo).Methods("GET")
+	router.HandleFunc("/v1/pastors/{pastorId}/church", c.WithChurch).Methods("GET")
 	return router
 }

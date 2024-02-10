@@ -1,4 +1,4 @@
-package churches
+package pastors
 
 import (
 	"api/models"
@@ -9,21 +9,21 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func WithPastor(w http.ResponseWriter, r *http.Request) {
+func WithChurch(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
-	churchId, isValidInt := strconv.Atoi(param["churchId"])
+	pastorId, isValidInt := strconv.Atoi(param["pastorId"])
 
 	if isValidInt != nil {
 		utils.Response(map[string]interface{}{
 			"statusCode": 500,
-			"devMessage": "[WP0001]Unable to find church.",
+			"devMessage": "[WC0001]Unable to find pastor .",
 		}, 200, w)
 		return
 	}
 
-	church := models.Churches{}
+	pastors := models.Pastors{}
 
-	if err := church.GetPastor(churchId); err != nil {
+	if err := pastors.GetChurch(pastorId); err != nil {
 		utils.Response(map[string]interface{}{
 			"statusCode": 500,
 			"devMessage": err.Error(),
@@ -33,6 +33,6 @@ func WithPastor(w http.ResponseWriter, r *http.Request) {
 
 	utils.Response(map[string]interface{}{
 		"statusCode": 200,
-		"devMessage": church,
+		"devMessage": pastors,
 	}, 200, w)
 }
