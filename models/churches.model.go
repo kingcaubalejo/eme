@@ -88,3 +88,12 @@ func (c *Churches) GetInfo(churchId int) error {
 
 	return ctx.Error
 }
+
+func (c *Churches) GetPastor(churchId int) error {
+	ctx := DB.Model(&Churches{}).Preload("Pastors").Find(&c, churchId)
+	if ctx.RowsAffected == 0 {
+		return errors.New("Unable to find the church of the pastor.")
+	}
+
+	return ctx.Error
+}
